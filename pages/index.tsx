@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import "../app/globals.css";
 import { useRouter } from "next/router";
+import { fetchData } from "../app/utils/index";
 
 interface Character {
   id: number;
   name: string;
 }
 interface Data {
-  info: {};
   results: Character[];
 }
 
@@ -28,15 +28,10 @@ export default function Home({ data }: { data: Data }) {
   const { results: defaultResults = [] } = data;
 
   const [results, updateResults] = useState(defaultResults);
-  const [page, updatePage] = useState({
-    current: defaultEndpoint,
-  });
-  const [initialLoad, setInitialLoad] = useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
-    // Fetch data based on the router query when the page loads
     fetchData(
       router.query.page
         ? `https://rickandmortyapi.com/api/character/?page=${router.query.page}&per_page=20`
@@ -44,24 +39,6 @@ export default function Home({ data }: { data: Data }) {
     );
   }, [router.query.page]);
 
-  async function fetchData(endpoint: string) {
-    try {
-      const res = await fetch(endpoint);
-      const data = await res.json();
-      const { info, results } = data;
-
-      if (!initialLoad) {
-        updateResults(results);
-        setInitialLoad(true);
-      } else {
-        updateResults((prevResults) => [...prevResults, ...results]);
-      }
-
-      updatePage({ ...info, current: endpoint });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       Characters
