@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { CharacterCardProps } from "../types";
+import Image from "next/image";
 
 const CharacterCard: React.FC<CharacterCardProps> = ({
   character,
@@ -78,7 +79,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
     <div
       ref={cardRef}
       tabIndex={0}
-      className={`character-card rounded overflow-hidden shadow-lg max-h-42 bg-gray-600 cursor-pointer hover:border-2 hover:border-lime-400 ${
+      className={`rounded overflow-hidden shadow-lg max-h-42 bg-gray-600 cursor-pointer border-2 border-transparent hover:border-lime-400 ${
         isFocused ? "outline-card" : ""
       }`}
       onClick={openModal}
@@ -88,14 +89,19 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
     >
       <div className="h-12 flex items-center justify-center">
         <div
-          className={`h-4 w-4 rounded-full mr-2 ${getStatusCircleColor()}`}
+          className={`h-2 w-2 rounded-full mr-2 ${getStatusCircleColor()}`}
           data-testid="status-circle"
         />
-        <h3 className="text-xs text-lime-300 py-2 font-bold text-center">
+        <h3 className="text-sm text-lime-300 py-2 font-bold text-center">
           {character.name}
         </h3>
       </div>
-      <img src={character.image} alt={`${character.name} Thumbnail`} />
+      <Image
+        src={character.image}
+        alt={`${character.name} Thumbnail`}
+        width={220}
+        height={200}
+      />
     </div>
   );
 };
