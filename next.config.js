@@ -5,4 +5,7 @@ module.exports = {
   images: {
     domains: ["www.freepnglogos.com", "rickandmortyapi.com"],
   },
+  pages: {
+    include: ["pages", "tests"],
+  },
 };
