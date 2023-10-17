@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import CharacterModal from "./";
+import CharacterModal from "../app/components/CharacterModal";
 
 const mockCharacter = {
   id: 1,

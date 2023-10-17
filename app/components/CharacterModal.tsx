@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Button from "@/app/components/Button";
 import { motion, AnimatePresence } from "framer-motion";
-import { CharacterModalProps } from "../../types";
+import { CharacterModalProps } from "../types";
 
 const modalVariants = {
   hidden: { opacity: 0, scale: 0.5, y: -100 },

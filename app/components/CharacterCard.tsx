@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { CharacterCardProps } from "../../types";
+import { CharacterCardProps } from "../types";
 
 const CharacterCard: React.FC<CharacterCardProps> = ({
   character,
